@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Profile</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+<div class="app">
+
+    <aside class="sidebar" id="sidebar">
+        <div class="logo">
+            <div class="logo-icon">M</div>
+            <span>ManageSys</span>
+        </div>
+
+        <nav>
+            <a href="dashboard.html" class="nav-link">
+                <span>▦</span>
+                Dashboard
+            </a>
+
+            <a href="users.html" class="nav-link">
+                <span>♙</span>
+                Users
+            </a>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <a href="update.html?id=1" class="profile profile-link">
+                <div class="avatar">A</div>
+                <div>
+                    <strong>Admin</strong>
+                    <small>My Profile</small>
+                </div>
+            </a>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <button class="menu-button" id="menuButton">☰</button>
+            <div>
+                <h1>My Profile</h1>
+                <p>Update your personal information</p>
+            </div>
+        </header>
+
+        <section class="content">
+            <div class="profile-panel">
+                <div class="profile-heading">
+                    <div class="profile-large-avatar" id="profileAvatar">A</div>
+                    <div>
+                        <h2>Personal Information</h2>
+                        <p>Keep your account details up to date.</p>
+                    </div>
+                </div>
+
+                <form id="profileForm">
+                    <input type="hidden" id="userId" value="1">
+
+                    <div class="profile-form-grid">
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" required maxlength="100">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="email">Email Address</label>
+                            <input type="email" id="email" required maxlength="150">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="role">Role</label>
+                            <input type="text" id="role" disabled>
+                        </div>
+
+                        <div class="form-group">
+                            <label for="status">Account Status</label>
+                            <input type="text" id="status" disabled>
+                        </div>
+                    </div>
+
+                    <div class="form-actions">
+                        <a href="dashboard.html" class="secondary-button">Cancel</a>
+                        <button type="submit" class="primary-button">Save Changes</button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script src="js/api.js"></script>
+<script src="js/update.js"></script>
+<script src="js/script.js"></script>
+
+</body>
+</html>

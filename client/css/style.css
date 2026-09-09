@@ -106,6 +106,14 @@ a {
     gap: 12px;
 }
 
+.profile-link {
+    color: white;
+}
+
+.profile-link:hover {
+    opacity: 0.85;
+}
+
 .profile strong {
     display: block;
     font-size: 14px;
@@ -455,6 +463,63 @@ td {
     margin-top: 25px;
 }
 
+.profile-panel {
+    background: white;
+    border: 1px solid #e5e7eb;
+    border-radius: 12px;
+    padding: 30px;
+    max-width: 850px;
+}
+
+.profile-heading {
+    display: flex;
+    align-items: center;
+    gap: 18px;
+    padding-bottom: 25px;
+    margin-bottom: 25px;
+    border-bottom: 1px solid #e5e7eb;
+}
+
+.profile-heading h2 {
+    font-size: 20px;
+}
+
+.profile-heading p {
+    color: #6b7280;
+    font-size: 14px;
+    margin-top: 6px;
+}
+
+.profile-large-avatar {
+    width: 72px;
+    height: 72px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: #dbeafe;
+    color: #2563eb;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.profile-form-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0 24px;
+}
+
+.form-group input:disabled {
+    background: #f9fafb;
+    color: #6b7280;
+    cursor: not-allowed;
+}
+
+.form-actions a {
+    display: inline-flex;
+    align-items: center;
+}
+
 .toast {
     position: fixed;
     right: 25px;
@@ -521,6 +586,14 @@ td {
 
     .search-input {
         width: 100%;
+    }
+
+    .profile-panel {
+        padding: 20px;
+    }
+
+    .profile-form-grid {
+        grid-template-columns: 1fr;
     }
 
 }
