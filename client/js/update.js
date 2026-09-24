@@ -1,15 +1,25 @@
 const profileForm = document.getElementById("profileForm");
-const userId = Number(new URLSearchParams(window.location.search).get("id")) || 1;
+const requestedUserId = new URLSearchParams(window.location.search).get("id");
+const userId = Number(requestedUserId);
+const hasValidUserId =
+    requestedUserId !== null &&
+    requestedUserId.trim() !== "" &&
+    Number.isInteger(userId) &&
+    userId > 0;
 
-document.getElementById("userId").value = userId;
+document.getElementById("userId").value = hasValidUserId ? userId : "";
 
 async function loadProfile() {
+    if (!hasValidUserId) {
+        showProfileError("Choose a valid user profile to update");
+        return;
+    }
+
     const users = await getUsers();
     const user = users.find(item => item.id === userId);
 
     if (!user) {
-        showToast("User profile could not be found");
-        profileForm.querySelector("button[type='submit']").disabled = true;
+        showProfileError("User profile could not be found");
         return;
     }
 
@@ -23,6 +33,11 @@ async function loadProfile() {
 
 profileForm.addEventListener("submit", async event => {
     event.preventDefault();
+
+    if (!hasValidUserId) {
+        showProfileError("Choose a valid user profile to update");
+        return;
+    }
 
     const response = await updateUser({
         id: userId,
@@ -48,6 +63,11 @@ function showToast(message) {
     setTimeout(() => {
         toast.classList.remove("show");
     }, 2500);
+}
+
+function showProfileError(message) {
+    profileForm.querySelector("button[type='submit']").disabled = true;
+    showToast(message);
 }
 
 loadProfile();
