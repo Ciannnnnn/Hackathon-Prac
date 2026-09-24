@@ -3,9 +3,44 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="refresh" content="0;url=dashboard.html">
-    <title>Management System</title>
+    <title>ManageSys Login</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="login-page">
+
+    <div class="login-shell">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="logo-icon">M</div>
+                <h1>ManageSys</h1>
+            </div>
+
+            <p class="login-subtitle">Sign in to your account</p>
+
+            <form id="loginForm">
+                <div class="form-group">
+                    <label for="loginEmail">Email Address</label>
+                    <input id="loginEmail" type="email" name="email" placeholder="Enter your email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="loginPassword">Password</label>
+                    <input id="loginPassword" type="password" name="password" placeholder="Enter your password" required>
+                </div>
+
+                <button type="submit" class="primary-button login-button">Login</button>
+            </form>
+
+            <div class="demo-credentials">
+                <p><strong>Admin:</strong> admin@system.com / admin123</p>
+                <p><strong>User:</strong> user@system.com / user123</p>
+            </div>
+
+            <p id="loginError" class="login-error" aria-live="polite"></p>
+        </div>
+    </div>
+
+    <script src="js/api.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>

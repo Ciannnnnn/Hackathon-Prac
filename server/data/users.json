@@ -2,14 +2,16 @@
     {
         "id": 1,
         "name": "Cian",
-        "email": "john@gmail.com",
+        "email": "admin@system.com",
+        "password": "admin123",
         "role": "Administrator",
         "status": "Active"
     },
     {
         "id": 2,
         "name": "Jackieline",
-        "email": "jcklnjmnz2005@gmail.com",
+        "email": "user@system.com",
+        "password": "user123",
         "role": "User",
         "status": "Active"
     },
@@ -17,6 +19,7 @@
         "id": 3,
         "name": "Homer",
         "email": "homer@gmail.com",
+        "password": "homer123",
         "role": "User",
         "status": "Inactive"
     }

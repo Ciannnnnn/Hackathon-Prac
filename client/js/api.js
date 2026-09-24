@@ -61,3 +61,19 @@ async function deleteUser(id) {
 
     return await response.json();
 }
+
+async function loginUser(credentials) {
+
+    const response = await fetch(
+        `${API_URL}?action=login`,
+        {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(credentials)
+        }
+    );
+
+    return await response.json();
+}

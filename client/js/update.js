@@ -1,5 +1,17 @@
 const profileForm = document.getElementById("profileForm");
-const userId = Number(new URLSearchParams(window.location.search).get("id")) || 1;
+const sessionUser = JSON.parse(localStorage.getItem("currentUser") || "null");
+
+if (!sessionUser) {
+    window.location.href = "index.html";
+    throw new Error("No user session");
+}
+
+const userId = Number(new URLSearchParams(window.location.search).get("id")) || sessionUser.id;
+
+if (sessionUser.role !== "Administrator" && sessionUser.id !== userId) {
+    window.location.href = "dashboard.html";
+    throw new Error("Unauthorized profile access");
+}
 
 document.getElementById("userId").value = userId;
 

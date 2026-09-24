@@ -46,6 +46,9 @@ form.addEventListener("submit", async event => {
     const id =
         document.getElementById("userId").value;
 
+    const password =
+        document.getElementById("password").value.trim();
+
     const user = {
 
         id: id ? Number(id) : undefined,
@@ -55,6 +58,8 @@ form.addEventListener("submit", async event => {
 
         email:
             document.getElementById("email").value.trim(),
+
+        password: password || undefined,
 
         role:
             document.getElementById("role").value,
@@ -233,6 +238,9 @@ function openModal(user = null) {
         document.getElementById("email")
             .value = user.email;
 
+        document.getElementById("password")
+            .value = "";
+
         document.getElementById("role")
             .value = user.role;
 
@@ -258,6 +266,9 @@ function closeModal() {
     modal.classList.remove("show");
 
     form.reset();
+
+    document.getElementById("password")
+        .value = "";
 
     document.getElementById("userId")
         .value = "";

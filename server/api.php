@@ -65,6 +65,46 @@ if ($method === "GET" && $action === "stats") {
     exit;
 }
 
+if ($method === "POST" && $action === "login") {
+
+    $input = json_decode(
+        file_get_contents("php://input"),
+        true
+    );
+
+    $email = strtolower(trim((string)($input["email"] ?? "")));
+    $password = (string)($input["password"] ?? "");
+
+    $user = null;
+
+    foreach ($users as $candidate) {
+        if (strtolower(trim((string)$candidate["email"])) === $email) {
+            $user = $candidate;
+            break;
+        }
+    }
+
+    if (!$user || !isset($user["password"]) || $user["password"] !== $password) {
+        http_response_code(401);
+
+        echo json_encode([
+            "success" => false,
+            "message" => "Invalid email or password"
+        ]);
+
+        exit;
+    }
+
+    unset($user["password"]);
+
+    echo json_encode([
+        "success" => true,
+        "user" => $user
+    ]);
+
+    exit;
+}
+
 if ($method === "POST" && $action === "add") {
 
     $input = json_decode(
@@ -90,11 +130,17 @@ if ($method === "POST" && $action === "add") {
     $ids = array_column($users, "id");
 
     $newId = empty($ids) ? 1 : max($ids) + 1;
+    $password = trim((string)($input["password"] ?? ""));
+
+    if ($password === "") {
+        $password = "changeme123";
+    }
 
     $newUser = [
         "id" => $newId,
         "name" => $input["name"],
         "email" => $input["email"],
+        "password" => $password,
         "role" => $input["role"],
         "status" => $input["status"] ?? "Active"
     ];
@@ -128,6 +174,10 @@ if ($method === "PUT" && $action === "update") {
             $user["email"] = $input["email"] ?? $user["email"];
             $user["role"] = $input["role"] ?? $user["role"];
             $user["status"] = $input["status"] ?? $user["status"];
+
+            if (isset($input["password"]) && trim((string)$input["password"]) !== "") {
+                $user["password"] = trim((string)$input["password"]);
+            }
 
             saveUsers($file, $users);
 
